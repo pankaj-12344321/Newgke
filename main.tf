@@ -23,6 +23,7 @@ resource "google_container_cluster" "primary" {
   name     = var.gkename
   location = var.location
   network = google_compute_network.vpc_network.name
+  subnetwork = google_compute_subnetwork.simplesubnet.name
   private_cluster_config {
     enable_private_nodes = true
     enable_private_endpoint = true
