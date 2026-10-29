@@ -29,7 +29,12 @@ resource "google_container_cluster" "primary" {
     enable_private_endpoint = true
     master_ipv4_cidr_block = var.cidr
   }
-
+  master_authorized_networks_config {
+    cidr_blocks {
+      cidr_block = "10.0.0.0/27"
+      display_name = "Internal Network"
+    }
+  }
   # Required prior to GKE 1.36.4-gke.1469000 to use separately managed node pools
   # remove_default_node_pool = true
   # initial_node_count       = 1
